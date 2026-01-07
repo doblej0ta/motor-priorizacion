@@ -35,11 +35,11 @@ git clone git@github.com:doblej0ta/motor-priorizacion.git
 cd motor-priorizacion
 ```
 
-2) Backend:
+2) Backend (con wrapper Maven incluido):
 ```bash
 cd backend
-mvn clean install
-mvn spring-boot:run
+./mvnw clean install
+./mvnw spring-boot:run
 ```
 API disponible en `http://localhost:8080`.
 
