@@ -10,9 +10,9 @@ export default function useSolicitudes() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Ciclo de carga inicial: trae todas las solicitudes al montar el componente
+  // Ciclo de carga inicial: trae todas las solicitudes ordenadas por prioridad calculada
   useEffect(() => {
-    cargarTodas();
+    cargarPriorizadas();
   }, []);
 
   async function crear(solicitud) {
@@ -20,7 +20,8 @@ export default function useSolicitudes() {
     setError(null);
     try {
       const creada = await crearSolicitud(solicitud);
-      setSolicitudes((prev) => [creada, ...prev]);
+      // Recargar las solicitudes ordenadas por prioridad
+      await cargarPriorizadas();
       return creada;
     } catch (err) {
       setError(err.message);
