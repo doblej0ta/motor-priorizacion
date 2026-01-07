@@ -128,18 +128,19 @@ select {
   background: #10b981;
 }
 
-.btn-estado {
-  padding: 4px 10px;
-  font-size: 12px;
-  background-color: #6366f1;
-  color: #fff;
-  border: none;
+.select-estado {
+  padding: 6px 10px;
+  font-size: 13px;
+  border: 1px solid #cbd2d9;
   border-radius: 6px;
+  background-color: #fff;
   cursor: pointer;
+  font-weight: 500;
 }
 
-.btn-estado:hover {
-  background-color: #4f46e5;
+.select-estado:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
 }
 
 .estado {

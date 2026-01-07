@@ -50,7 +50,6 @@ function ListaSolicitudes({ solicitudes, loading, error, onActualizacion }) {
           <th>Fecha</th>
           <th>Prioridad Calculada</th>
           <th>Estado</th>
-          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -67,30 +66,15 @@ function ListaSolicitudes({ solicitudes, loading, error, onActualizacion }) {
               </span>
             </td>
             <td>
-              <span className={estadoBadgeClass(solicitud.estado)}>
-                {solicitud.estado}
-              </span>
-            </td>
-            <td>
-              {solicitud.estado === "NUEVO" && (
-                <button
-                  className="btn-estado"
-                  onClick={() => cambiarEstado(solicitud.solicitudId.split('-')[1], "EN_PROGRESO")}
-                >
-                  Iniciar
-                </button>
-              )}
-              {solicitud.estado === "EN_PROGRESO" && (
-                <button
-                  className="btn-estado"
-                  onClick={() => cambiarEstado(solicitud.solicitudId.split('-')[1], "COMPLETADO")}
-                >
-                  Completar
-                </button>
-              )}
-              {solicitud.estado === "COMPLETADO" && (
-                <span style={{ color: "#888" }}>Finalizado</span>
-              )}
+              <select
+                className="select-estado"
+                value={solicitud.estado}
+                onChange={(e) => cambiarEstado(solicitud.solicitudId.split('-')[1], e.target.value)}
+              >
+                <option value="NUEVO">NUEVO</option>
+                <option value="EN_PROGRESO">EN_PROGRESO</option>
+                <option value="COMPLETADO">COMPLETADO</option>
+              </select>
             </td>
           </tr>
         ))}
