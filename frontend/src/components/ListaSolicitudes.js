@@ -10,7 +10,7 @@ function ListaSolicitudes({ solicitudes, loading, error, onActualizacion }) {
 
   function estadoBadgeClass(estado) {
     if (estado === "NUEVO") return "badge-estado badge-nuevo";
-    if (estado === "EN_PROGRESO") return "badge-estado badge-progreso";
+    if (estado === "PROGRESO") return "badge-estado badge-progreso";
     if (estado === "COMPLETADO") return "badge-estado badge-completado";
     return "badge-estado";
   }
@@ -72,7 +72,7 @@ function ListaSolicitudes({ solicitudes, loading, error, onActualizacion }) {
                 onChange={(e) => cambiarEstado(solicitud.id, e.target.value)}
               >
                 <option value="NUEVO">NUEVO</option>
-                <option value="EN_PROGRESO">EN_PROGRESO</option>
+                <option value="PROGRESO">PROGRESO</option>
                 <option value="COMPLETADO">COMPLETADO</option>
               </select>
             </td>
