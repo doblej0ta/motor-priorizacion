@@ -28,6 +28,13 @@ motor-priorizacion/
 - Node.js 18 o superior
 - Git
 
+## Configuración
+- Backend: sin configuración extra (H2 en memoria, consola en `/h2-console`).
+- Frontend: archivo `frontend/.env` con:
+  ```env
+  REACT_APP_API_URL=http://localhost:8080/api
+  ```
+
 ## Instalación y ejecución
 1) Clonar el repositorio:
 ```bash
@@ -43,6 +50,15 @@ cd backend
 ```
 API disponible en `http://localhost:8080`.
 
+Alternativa (si tienes problemas con `spring-boot:run`):
+```bash
+# Linux/macOS
+java -jar backend/target/motor-priorizacion-0.0.1-SNAPSHOT.jar
+
+# Windows (PowerShell)
+java -jar .\backend\target\motor-priorizacion-0.0.1-SNAPSHOT.jar
+```
+
 3) Frontend:
 ```bash
 cd frontend
@@ -54,6 +70,17 @@ App disponible en `http://localhost:3000`.
 Ejecución rápida con scripts (en Windows usar .ps1, en Linux/macOS usar .sh):
 - `./scripts/start-backend.sh` o `powershell -ExecutionPolicy Bypass -File .\scripts\start-backend.ps1`
 - `./scripts/start-frontend.sh` o `powershell -ExecutionPolicy Bypass -File .\scripts\start-frontend.ps1`
+
+## Pruebas rápidas (Postman)
+- Crea un Environment `local` con `baseUrl = http://localhost:8080/api`.
+- Requests:
+  - POST `{{baseUrl}}/solicitudes` (JSON):
+    ```json
+    { "tipo": "INCIDENTE", "prioridadManual": 4, "usuario": "jdoe" }
+    ```
+  - GET `{{baseUrl}}/solicitudes`
+  - GET `{{baseUrl}}/solicitudes/priorizadas`
+  - En Postman usa Desktop Agent (no Cloud) para poder llamar a `localhost`.
 
 ## Endpoints API
 - `POST /api/solicitudes` – Crea una solicitud.
@@ -100,6 +127,10 @@ Ejecución rápida con scripts (en Windows usar .ps1, en Linux/macOS usar .sh):
 - Autenticación y autorización.
 - Estrategias de priorización adicionales.
 - Tests unitarios e integración.
+
+## Problemas comunes
+- Postman indica `DNSLookup: ENOTFOUND baseurl`: cambia la URL a `http://localhost:8080/api/...` o usa la variable `{{baseUrl}}` en un Environment. Asegúrate de usar Desktop Agent.
+- `mvnw spring-boot:run` falla con `ClassNotFoundException` en rutas con espacios/acentos: usa la alternativa `java -jar backend/target/...` tras compilar (`./mvnw clean install`).
 
 ## Configuración Git (primer commit)
 ```bash
