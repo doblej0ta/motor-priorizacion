@@ -2,6 +2,8 @@ package com.priorizacion.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,22 +23,25 @@ public class Solicitud {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "solicitud_id", nullable = false, unique = true)
+    @Column(name = "solicitud_id", nullable = false, unique = true, updatable = false)
     private String solicitudId;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private TipoSolicitud tipo;
 
     @NotNull
     @Min(1)
     @Max(5)
-    @Column(name = "prioridad_manual")
+    @Column(name = "prioridad_manual", nullable = false)
     private Integer prioridadManual;
 
     @Column(name = "fecha_creacion", nullable = false)
     private LocalDateTime fechaCreacion;
 
     @NotBlank
+    @Column(nullable = false)
     private String usuario;
 
     protected Solicitud() {
@@ -105,9 +110,7 @@ public class Solicitud {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
+    // La fecha de creación se asigna solo en @PrePersist
 
     public String getUsuario() {
         return usuario;
