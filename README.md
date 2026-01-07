@@ -36,6 +36,27 @@ motor-priorizacion/
   ```
 
 ## Instalación y ejecución
+
+### Ejecución rápida (Windows PowerShell)
+
+**Terminal 1 - Backend:**
+```powershell
+cd "c:\Users\juanc\OneDrive\Desktop\Motor de Reglas de Priorización\backend"
+.\mvnw.cmd clean package -DskipTests
+java -jar target\motor-priorizacion-0.0.1-SNAPSHOT.jar
+```
+API disponible en `http://localhost:8080`
+
+**Terminal 2 - Frontend:**
+```powershell
+$env:Path = "C:\Program Files\nodejs;" + $env:Path
+cd "c:\Users\juanc\OneDrive\Desktop\Motor de Reglas de Priorización\frontend"
+npm.cmd start
+```
+App disponible en `http://localhost:3000`
+
+### Instalación manual (desarrollo)
+
 1) Clonar el repositorio:
 ```bash
 git clone git@github.com:doblej0ta/motor-priorizacion.git
@@ -50,7 +71,7 @@ cd backend
 ```
 API disponible en `http://localhost:8080`.
 
-Alternativa (si tienes problemas con `spring-boot:run`):
+Alternativa (compilar y ejecutar JAR):
 ```bash
 # Linux/macOS
 java -jar backend/target/motor-priorizacion-0.0.1-SNAPSHOT.jar
