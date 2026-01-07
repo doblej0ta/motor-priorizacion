@@ -63,6 +63,7 @@ public class SolicitudController {
 
     private SolicitudResponse toResponse(Solicitud solicitud, double prioridadCalculada) {
         return new SolicitudResponse(
+                solicitud.getId(),
                 solicitud.getSolicitudId(),
                 solicitud.getTipo(),
                 solicitud.getPrioridadManual(),

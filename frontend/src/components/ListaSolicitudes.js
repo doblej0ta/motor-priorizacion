@@ -69,7 +69,7 @@ function ListaSolicitudes({ solicitudes, loading, error, onActualizacion }) {
               <select
                 className="select-estado"
                 value={solicitud.estado}
-                onChange={(e) => cambiarEstado(solicitud.solicitudId.split('-')[1], e.target.value)}
+                onChange={(e) => cambiarEstado(solicitud.id, e.target.value)}
               >
                 <option value="NUEVO">NUEVO</option>
                 <option value="EN_PROGRESO">EN_PROGRESO</option>
