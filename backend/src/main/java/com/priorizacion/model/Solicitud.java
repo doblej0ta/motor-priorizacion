@@ -44,6 +44,11 @@ public class Solicitud {
     @Column(nullable = false)
     private String usuario;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private EstadoSolicitud estado;
+
     protected Solicitud() {
         // Constructor requerido por JPA
     }
@@ -60,6 +65,9 @@ public class Solicitud {
     void asignarFechaCreacion() {
         if (fechaCreacion == null) {
             fechaCreacion = LocalDateTime.now();
+        }
+        if (estado == null) {
+            estado = EstadoSolicitud.NUEVO;
         }
     }
 
@@ -114,5 +122,13 @@ public class Solicitud {
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
+    }
+
+    public EstadoSolicitud getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoSolicitud estado) {
+        this.estado = estado;
     }
 }

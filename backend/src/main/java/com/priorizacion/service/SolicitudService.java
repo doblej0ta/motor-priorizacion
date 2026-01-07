@@ -1,6 +1,7 @@
 package com.priorizacion.service;
 
 import com.priorizacion.model.EstrategiaPriorizacion;
+import com.priorizacion.model.EstadoSolicitud;
 import com.priorizacion.model.GeneradorIdSolicitud;
 import com.priorizacion.model.Solicitud;
 import com.priorizacion.model.TipoSolicitud;
@@ -42,6 +43,13 @@ public class SolicitudService {
                 .map(this::crearPrioritaria)
                 .sorted(Comparator.comparingDouble(SolicitudPrioritaria::prioridadCalculada).reversed())
                 .toList();
+    }
+
+    public Solicitud actualizarEstado(Long id, EstadoSolicitud nuevoEstado) {
+        Solicitud solicitud = solicitudRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Solicitud no encontrada con id: " + id));
+        solicitud.setEstado(nuevoEstado);
+        return solicitudRepository.save(solicitud);
     }
 
     public double calcularPrioridad(Solicitud solicitud) {

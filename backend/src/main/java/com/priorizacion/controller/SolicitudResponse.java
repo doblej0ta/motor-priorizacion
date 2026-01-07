@@ -1,5 +1,6 @@
 package com.priorizacion.controller;
 
+import com.priorizacion.model.EstadoSolicitud;
 import com.priorizacion.model.TipoSolicitud;
 import java.time.LocalDateTime;
 
@@ -9,6 +10,7 @@ public record SolicitudResponse(
         Integer prioridadManual,
         String usuario,
         LocalDateTime fechaCreacion,
-        double prioridadCalculada
+        double prioridadCalculada,
+        EstadoSolicitud estado
 ) {
 }
