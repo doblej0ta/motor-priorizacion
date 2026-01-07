@@ -51,6 +51,10 @@ npm start
 ```
 App disponible en `http://localhost:3000`.
 
+Ejecución rápida con scripts (en Windows usar .ps1, en Linux/macOS usar .sh):
+- `./scripts/start-backend.sh` o `powershell -ExecutionPolicy Bypass -File .\scripts\start-backend.ps1`
+- `./scripts/start-frontend.sh` o `powershell -ExecutionPolicy Bypass -File .\scripts\start-frontend.ps1`
+
 ## Endpoints API
 - `POST /api/solicitudes` – Crea una solicitud.
   - Request ejemplo:
