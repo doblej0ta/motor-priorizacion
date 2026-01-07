@@ -1,10 +1,29 @@
 import React from "react";
+import { actualizarEstado } from "../services/solicitudService";
 
-function ListaSolicitudes({ solicitudes, loading, error }) {
+function ListaSolicitudes({ solicitudes, loading, error, onActualizacion }) {
   function badgeClass(prioridad) {
     if (prioridad > 4) return "badge badge-alta";
     if (prioridad >= 2) return "badge badge-media";
     return "badge badge-baja";
+  }
+
+  function estadoBadgeClass(estado) {
+    if (estado === "NUEVO") return "badge-estado badge-nuevo";
+    if (estado === "EN_PROGRESO") return "badge-estado badge-progreso";
+    if (estado === "COMPLETADO") return "badge-estado badge-completado";
+    return "badge-estado";
+  }
+
+  async function cambiarEstado(id, nuevoEstado) {
+    try {
+      await actualizarEstado(id, nuevoEstado);
+      if (onActualizacion) {
+        onActualizacion();
+      }
+    } catch (err) {
+      alert("Error al cambiar estado: " + err.message);
+    }
   }
 
   // Código de colores: baja gris, media amarilla, alta roja
@@ -30,6 +49,8 @@ function ListaSolicitudes({ solicitudes, loading, error }) {
           <th>Usuario</th>
           <th>Fecha</th>
           <th>Prioridad Calculada</th>
+          <th>Estado</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -44,6 +65,32 @@ function ListaSolicitudes({ solicitudes, loading, error }) {
               <span className={badgeClass(solicitud.prioridadCalculada)}>
                 {solicitud.prioridadCalculada.toFixed(2)}
               </span>
+            </td>
+            <td>
+              <span className={estadoBadgeClass(solicitud.estado)}>
+                {solicitud.estado}
+              </span>
+            </td>
+            <td>
+              {solicitud.estado === "NUEVO" && (
+                <button
+                  className="btn-estado"
+                  onClick={() => cambiarEstado(solicitud.solicitudId.split('-')[1], "EN_PROGRESO")}
+                >
+                  Iniciar
+                </button>
+              )}
+              {solicitud.estado === "EN_PROGRESO" && (
+                <button
+                  className="btn-estado"
+                  onClick={() => cambiarEstado(solicitud.solicitudId.split('-')[1], "COMPLETADO")}
+                >
+                  Completar
+                </button>
+              )}
+              {solicitud.estado === "COMPLETADO" && (
+                <span style={{ color: "#888" }}>Finalizado</span>
+              )}
             </td>
           </tr>
         ))}

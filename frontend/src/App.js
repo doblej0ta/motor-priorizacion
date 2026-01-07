@@ -34,7 +34,12 @@ function App() {
 
       <section className="panel">
         <h2>Solicitudes</h2>
-        <ListaSolicitudes solicitudes={solicitudes} loading={loading} error={error} />
+        <ListaSolicitudes 
+          solicitudes={solicitudes} 
+          loading={loading} 
+          error={error}
+          onActualizacion={cargarTodas}
+        />
       </section>
     </div>
   );

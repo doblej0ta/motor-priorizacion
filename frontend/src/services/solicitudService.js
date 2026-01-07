@@ -32,6 +32,17 @@ export async function obtenerPriorizadas() {
   }
 }
 
+export async function actualizarEstado(id, nuevoEstado) {
+  try {
+    const response = await api.patch(`/solicitudes/${id}/estado`, {
+      estado: nuevoEstado,
+    });
+    return response.data;
+  } catch (error) {
+    throw parseError(error);
+  }
+}
+
 function parseError(error) {
   if (error.response && error.response.data) {
     return new Error(error.response.data.message || "Error en la solicitud");

@@ -107,6 +107,41 @@ select {
   background: #fecdd3;
 }
 
+.badge-estado {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.badge-nuevo {
+  background: #3b82f6;
+}
+
+.badge-progreso {
+  background: #f59e0b;
+}
+
+.badge-completado {
+  background: #10b981;
+}
+
+.btn-estado {
+  padding: 4px 10px;
+  font-size: 12px;
+  background-color: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-estado:hover {
+  background-color: #4f46e5;
+}
+
 .estado {
   margin: 8px 0;
   font-size: 14px;
