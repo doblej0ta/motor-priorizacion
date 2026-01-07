@@ -86,10 +86,6 @@ public class Solicitud {
         return solicitudId;
     }
 
-    public void setSolicitudId(String solicitudId) {
-        this.solicitudId = solicitudId;
-    }
-
     public TipoSolicitud getTipo() {
         return tipo;
     }

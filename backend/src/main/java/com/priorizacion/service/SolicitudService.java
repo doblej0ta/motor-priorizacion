@@ -34,7 +34,7 @@ public class SolicitudService {
     }
 
     public List<Solicitud> obtenerTodas() {
-        return solicitudRepository.findAll();
+        return solicitudRepository.findAllByOrderByFechaCreacionDesc();
     }
 
     public List<SolicitudPrioritaria> obtenerPriorizadas() {
